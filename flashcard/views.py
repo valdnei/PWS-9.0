@@ -175,13 +175,15 @@ def relatorio(request,id):
     # for c in categorias:
     #     name_categoria.append(c.nome)
 
-    dados2 = []
+    conhecimento_por_area = []
 
     for categoria in categorias:
-        dados2.append(desafio.flashcards.filter(flashcard__categoria=categoria).filter(acertou=True).count())
+        conhecimento_por_area.append(desafio.flashcards.filter(flashcard__categoria=categoria).filter(acertou=True).count())
 
-    return render(request, 'relatorio.html', {'desafio':desafio,
-                                              'dados':dados,
-                                              'categoria':name_categoria,
-                                              'dados2':dados2,
+    # TODO: Fazer o ranking
+    
+    return render(request, 'relatorio.html', {'desafio': desafio,
+                                              'dados': dados,
+                                              'categorias':name_categoria,
+                                              'conhecimento_por_area':conhecimento_por_area,
                                                 })
